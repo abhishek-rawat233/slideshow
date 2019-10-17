@@ -1,16 +1,17 @@
 class Slideshow {
   constructor(selectors) {
     this.slideId = $(selectors.slideId);
-    this.slides = this.slideId.find(selectors.slidesEle)
+    this.slides = this.slideId.find(selectors.slidesEle);
     this.slidesLength = this.slides.length;
     this.slideCounterId = selectors.slideCounterId;
     this.currentSlide = 0;
+    this.slideChangeTime = selectors.slideChangeTime;
     this.startShow = this.startShow.bind(this);
     this.target = $(selectors.target);
   }
 
   addSlideCounter() {
-    var counterText = '<h3>total slides: 3</h3><h3>Current Slide: <span id="slideCounter">1</span></h3>'
+    var counterText = '<h3>total slides: 3</h3><h3>Current Slide: <span id="slideCounter">1</span></h3>';
     $(counterText).insertAfter(this.slideId);
   }
 
@@ -31,7 +32,7 @@ class Slideshow {
       $('#'+this.slideCounterId).text(this.currentSlide + 1);
       this.currentSlide++;
     });
-    setTimeout(this.startShow, 3000);
+    setTimeout(this.startShow, this.slideChangeTime);
   }
 
   init() {
@@ -42,11 +43,12 @@ class Slideshow {
   }
 }
 
-selectors = {
+var selectors = {
   slideId: '#slideshow',
   slidesEle: 'li',
   target: '#header',
-  slideCounterId: 'slideCounter'
+  slideCounterId: 'slideCounter',
+  slideChangeTime: 3000
 };
 
 $(document).ready((new Slideshow(selectors)).init());
