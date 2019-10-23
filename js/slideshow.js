@@ -66,7 +66,7 @@ var selectors = {
 };
 
 
-var startSlideshow = () => {
+function startSlideshow() {
   var slideshow = new Slideshow(selectors);
   slideshow.init();
 };
