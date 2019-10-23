@@ -11,8 +11,22 @@ class Slideshow {
   }
 
   addSlideCounter() {
-    var counterText = '<h3>total slides: 3</h3><h3>Current Slide: <span id="slideCounter">1</span></h3>';
-    $(counterText).insertAfter(this.slideId);
+    var counterTextAttr = {
+      firstHeadingAttr : {
+        text : `Total Slides: ${this.slidesLength}`
+      },
+      secondHeadingAttr: {
+        text : 'Current Slide: '
+      },
+      spanAttr : {
+        id : this.slideCounterId,
+        text : this.currentSlide + 1
+      }
+    }
+    var counterText = $('<h3 />', counterTextAttr.firstHeadingAttr)
+      .add($('<h3 />', counterTextAttr.secondHeadingAttr)
+        .append($('<span />', counterTextAttr.spanAttr)));
+    counterText.insertAfter(this.slideId);
   }
 
   moveToTop() {
@@ -44,11 +58,17 @@ class Slideshow {
 }
 
 var selectors = {
-  slideId: '#slideshow',
-  slidesEle: 'li',
-  target: '#header',
-  slideCounterId: 'slideCounter',
-  slideChangeTime: 3000
+  slideId : '#slideshow',
+  slidesEle : 'li',
+  target : '#header',
+  slideCounterId : 'slideCounter',
+  slideChangeTime : 3000
 };
 
-$(document).ready((new Slideshow(selectors)).init());
+
+var startSlideshow = () => {
+  var slideshow = new Slideshow(selectors);
+  slideshow.init();
+};
+
+$(document).ready(startSlideshow());
