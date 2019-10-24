@@ -23,6 +23,7 @@ class Slideshow {
         text : this.currentSlide + 1
       }
     }
+    // var counterText = `<h3>total slides : ${this.slidesLength}</h3><h3>Current Slide : <span id = ${this.slideCounterId}>${this.currentSlide + 1}</span></h3>`;
     var counterText = $('<h3 />', counterTextAttr.firstHeadingAttr)
       .add($('<h3 />', counterTextAttr.secondHeadingAttr)
         .append($('<span />', counterTextAttr.spanAttr)));
@@ -57,18 +58,14 @@ class Slideshow {
   }
 }
 
-var selectors = {
-  slideId : '#slideshow',
-  slidesEle : 'li',
-  target : '#header',
-  slideCounterId : 'slideCounter',
-  slideChangeTime : 3000
-};
-
-
-var startSlideshow = () => {
+$(document).ready(function() {
+  var selectors = {
+    slideId : '#slideshow',
+    slidesEle : 'li',
+    target : '#header',
+    slideCounterId : 'slideCounter',
+    slideChangeTime : 3000
+  };
   var slideshow = new Slideshow(selectors);
   slideshow.init();
-};
-
-$(document).ready(startSlideshow());
+});
