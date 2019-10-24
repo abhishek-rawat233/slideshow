@@ -66,6 +66,7 @@ $(document).ready(function() {
     slideCounterId : 'slideCounter',
     slideChangeTime : 3000
   };
+
   var slideshow = new Slideshow(selectors);
   slideshow.init();
 });
