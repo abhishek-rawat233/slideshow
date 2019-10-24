@@ -23,7 +23,7 @@ class Slideshow {
         text : this.currentSlide + 1
       }
     }
-    // var counterText = `<h3>total slides : ${this.slidesLength}</h3><h3>Current Slide : <span id = ${this.slideCounterId}>${this.currentSlide + 1}</span></h3>`;
+
     var counterText = $('<h3 />', counterTextAttr.firstHeadingAttr)
       .add($('<h3 />', counterTextAttr.secondHeadingAttr)
         .append($('<span />', counterTextAttr.spanAttr)));
